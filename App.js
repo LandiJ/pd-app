@@ -15,27 +15,30 @@ export default class App extends React.Component {
   render() {
     const AppStack = StackNavigator({
       Home: {
-        screen: Home,
-        navigationOptions: {
-          title: "Pro-Duffers Home"
-        }
+        screen: Home
+        // navigationOptions: {
+        //   title: "PRO-DUFFERS HOME"
+        // }
       },
       About: {
         screen: AboutPage,
         navigationOptions: {
-          title: "About Us"
+          title: "ABOUT US",
+          headerTitleStyle: {
+            color: "white"
+          }
         }
       },
       Announcements: {
         screen: Announcements,
         navigationOptions: {
-          title: "Announcements"
+          title: "ANNOUNCEMENTS"
         }
       },
       Upcoming: {
         screen: Upcoming,
         navigationOptions: {
-          title: "Upcoming Events"
+          title: "UPCOMING EVENTS"
         }
       },
       Schedule: {

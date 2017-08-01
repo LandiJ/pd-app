@@ -49,20 +49,41 @@ export default class Home extends Component {
         source={require("./golf-sunset-sport-golfer.jpg")}
         style={styles.container}
       >
-        <Button full bordered style={{}} onPress={this.onAboutPress}>
-          <Text> About Us </Text>
+        <Button
+          style={{ backgroundColor: "black", margin: 20 }}
+          onPress={this.onAboutPress}
+        >
+          <Text style={{ color: "white", fontWeight: "bold" }}> About Us </Text>
         </Button>
-        <Button full style={{}} bordered onPress={this.onAnnouncePress}>
-          <Text> Announcements </Text>
+        <Button
+          style={{ backgroundColor: "black", margin: 20 }}
+          onPress={this.onAnnouncePress}
+        >
+          <Text style={{ color: "white", fontWeight: "bold" }}>
+            {" "}Announcements{" "}
+          </Text>
         </Button>
-        <Button block style={{}} bordered onPress={this.onUpcomingPress}>
-          <Text> Upcoming Events </Text>
+        <Button
+          style={{ backgroundColor: "black", margin: 20 }}
+          onPress={this.onUpcomingPress}
+        >
+          <Text style={{ color: "white", fontWeight: "bold" }}>
+            {" "}Upcoming Events{" "}
+          </Text>
         </Button>
-        <Button block style={{}} bordered onPress={this.onSchedulePress}>
-          <Text> Schedule </Text>
+        <Button
+          style={{ backgroundColor: "black", margin: 20 }}
+          onPress={this.onSchedulePress}
+        >
+          <Text style={{ color: "white", fontWeight: "bold" }}> Schedule </Text>
         </Button>
-        <Button block style={{}} bordered onPress={this.onContactPress}>
-          <Text> Contact Us </Text>
+        <Button
+          style={{ backgroundColor: "black", margin: 20 }}
+          onPress={this.onContactPress}
+        >
+          <Text style={{ color: "white", fontWeight: "bold" }}>
+            {" "}Contact Us{" "}
+          </Text>
         </Button>
       </Image>
     );
