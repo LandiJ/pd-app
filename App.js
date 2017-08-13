@@ -10,15 +10,17 @@ import Upcoming from "./src/components/Upcoming";
 import Schedule from "./src/components/Schedule";
 import Contact from "./src/components/Contact";
 import ContactDetail from "./src/components/ContactDetail";
+import AnnouncementDetail from "./src/components/AnnouncementDetail";
+import AnnouncementList from "./src/components/AnnouncementList";
+import AddAnnouncements from "./src/components/AddAnnouncements";
 
 export default class App extends React.Component {
   render() {
     const AppStack = StackNavigator({
       Home: {
-        screen: Home
-        // navigationOptions: {
-        //   title: "PRO-DUFFERS HOME"
-        // }
+        screen: Home,
+
+        navigationOptions: { header: null }
       },
       About: {
         screen: AboutPage,
@@ -31,27 +33,29 @@ export default class App extends React.Component {
       },
       Announcements: {
         screen: Announcements,
-        navigationOptions: {
-          title: "ANNOUNCEMENTS"
-        }
+        navigationOptions: { header: null }
+      },
+      AnnouncementDetail: {
+        screen: AnnouncementDetail,
+
+        navigationOptions: { header: null }
+      },
+      AddAnnouncements: {
+        screen: AddAnnouncements,
+
+        navigationOptions: { header: null }
       },
       Upcoming: {
         screen: Upcoming,
-        navigationOptions: {
-          title: "UPCOMING EVENTS"
-        }
+        navigationOptions: { header: null }
       },
       Schedule: {
         screen: Schedule,
-        navigationOptions: {
-          title: "Schedule"
-        }
+        navigationOptions: { header: null }
       },
       Contact: {
         screen: Contact,
-        navigationOptions: {
-          title: "Contact Us"
-        }
+        navigationOptions: { header: null }
       },
       ContactDetail: {
         screen: ContactDetail,

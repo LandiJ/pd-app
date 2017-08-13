@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Autolink from "react-native-autolink";
 
 import {
   AppRegistry,
@@ -9,7 +10,8 @@ import {
   TouchableWithoutFeedback,
   Alert,
   StyleSheet,
-  ScrollView
+  ScrollView,
+  Link
 } from "react-native";
 import { Button } from "native-base";
 import { Tile, List, ListItem } from "react-native-elements";
@@ -34,7 +36,7 @@ class ContactDetail extends Component {
         />
 
         <List>
-          <ListItem title="Email" rightTitle={email} hideChevron />
+          <ListItem title={<Autolink text={email} />} hideChevron />
         </List>
 
       </ScrollView>

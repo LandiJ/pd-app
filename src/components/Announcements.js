@@ -24,9 +24,7 @@ class Announcements extends Component {
   updateList = e => {
     e.preventDefault();
     axios
-      .get(
-        "https://api.mlab.com/api/1/databases/announcements/collections/announcements?apiKey=rhDZW14oggcuOuAHH4SWq5llxkO_M_og"
-      )
+      .get("https://produffersdatabase.herokuapp.com/announcements")
       .then(response => {
         let announcements = response.data;
         this.setState({ announcements });
@@ -39,9 +37,7 @@ class Announcements extends Component {
 
   getAnnouncements() {
     axios
-      .get(
-        "https://api.mlab.com/api/1/databases/announcements/collections/announcements?apiKey=rhDZW14oggcuOuAHH4SWq5llxkO_M_og"
-      )
+      .get("https://produffersdatabase.herokuapp.com/announcements")
       .then(response => {
         let announcements = response.data;
         this.setState({ announcements });
@@ -52,7 +48,10 @@ class Announcements extends Component {
     return (
       <ScrollView>
         <Button title="Refresh" onPress={this.updateList} />
-        <AnnouncementList announcements={this.state.announcements} />
+        <AnnouncementList
+          announcements={this.state.announcements}
+          navigation={this.props.navigation}
+        />
 
       </ScrollView>
     );
