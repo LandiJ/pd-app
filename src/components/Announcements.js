@@ -12,6 +12,7 @@ import {
   Alert,
   ScrollView
 } from "react-native";
+import { Content, Thumbnail, Body, Spinner } from "native-base";
 
 class Announcements extends Component {
   constructor(props) {
@@ -45,9 +46,13 @@ class Announcements extends Component {
   }
 
   render() {
+    if (this.state.announcements.length === 0) {
+      return <Spinner />;
+    }
     return (
       <ScrollView>
         <Button title="Refresh" onPress={this.updateList} />
+
         <AnnouncementList
           announcements={this.state.announcements}
           navigation={this.props.navigation}

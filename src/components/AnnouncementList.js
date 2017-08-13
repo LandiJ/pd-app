@@ -10,7 +10,7 @@ import {
   StyleSheet,
   Container
 } from "react-native";
-import { Button, Content, Text, Thumbnail, Body } from "native-base";
+import { Button, Content, Text, Thumbnail, Body, Spinner } from "native-base";
 import { SideMenu, List, ListItem } from "react-native-elements";
 import Timestamp from "react-timestamp";
 

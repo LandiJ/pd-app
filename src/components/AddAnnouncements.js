@@ -68,6 +68,7 @@ class AddAnnouncements extends Component {
       <Container>
         <Header />
         <Content>
+
           <Form>
             <Item floatingLabel>
               <Label>Announcement Title</Label>
