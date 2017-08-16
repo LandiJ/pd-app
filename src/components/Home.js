@@ -163,7 +163,7 @@ export default class Home extends Component {
               fontSize: 20
             }}
           >
-            {" "}Add Announcements{" "}
+            {" "}Admin{" "}
           </Text>
         </Button>
       </Image>

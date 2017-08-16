@@ -13,6 +13,7 @@ import ContactDetail from "./src/components/ContactDetail";
 import AnnouncementDetail from "./src/components/AnnouncementDetail";
 import AnnouncementList from "./src/components/AnnouncementList";
 import AddAnnouncements from "./src/components/AddAnnouncements";
+import AdminLogin from "./src/components/AdminLogin";
 
 export default class App extends React.Component {
   render() {
@@ -43,6 +44,10 @@ export default class App extends React.Component {
       AddAnnouncements: {
         screen: AddAnnouncements,
 
+        navigationOptions: { header: null }
+      },
+      AdminLogin: {
+        screen: AdminLogin,
         navigationOptions: { header: null }
       },
       Upcoming: {

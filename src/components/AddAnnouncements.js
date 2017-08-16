@@ -1,4 +1,6 @@
-import React, { Component } from "react";
+import React, { Component, AppRegistry } from "react";
+
+import { Alert } from "react-native";
 import {
   Container,
   Header,
@@ -17,6 +19,7 @@ class AddAnnouncements extends Component {
 
     this.handleTitleInput = this.handleTitleInput.bind(this);
     this.handleBodyInput = this.handleBodyInput.bind(this);
+    this.handleHomePress = this.handleHomePress.bind(this);
 
     this.state = {
       title: "",
@@ -32,6 +35,10 @@ class AddAnnouncements extends Component {
     var body = this.state.body;
     body = e.target.value;
     this.setState({ body });
+  }
+  handleHomePress(e) {
+    const { navigate } = this.props.navigation;
+    navigate("Home");
   }
 
   addToList = e => {
@@ -61,6 +68,8 @@ class AddAnnouncements extends Component {
       title: "",
       body: ""
     });
+    this.handleHomePress();
+    Alert.alert("Success!", "Announcement Added");
   };
 
   render() {
