@@ -38,7 +38,7 @@ class AddAnnouncements extends Component {
   }
   handleHomePress(e) {
     const { navigate } = this.props.navigation;
-    navigate("Home");
+    navigate("AdminHome");
   }
 
   addToList = e => {
@@ -75,7 +75,6 @@ class AddAnnouncements extends Component {
   render() {
     return (
       <Container>
-        <Header />
         <Content>
 
           <Form>

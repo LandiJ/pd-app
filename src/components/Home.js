@@ -46,7 +46,7 @@ export default class Home extends Component {
   }
   onAddPress() {
     const { navigate } = this.props.navigation;
-    navigate("AddAnnouncements");
+    navigate("AdminLogin");
   }
   render() {
     return (

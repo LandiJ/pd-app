@@ -10,6 +10,7 @@ import {
   StyleSheet,
   Container
 } from "react-native";
+import moment from "moment";
 import { Button, Content, Text, Thumbnail, Body, Spinner } from "native-base";
 import { SideMenu, List, ListItem } from "react-native-elements";
 import Timestamp from "react-timestamp";
@@ -33,6 +34,9 @@ export default class AnnouncementList extends Component {
           onPress={() => this.handlePress(announcement)}
           key={announcement.createdAt}
           title={announcement.title}
+          subtitle={moment(new Date(announcement.createdAt)).format(
+            "ddd, DD MMM YYYY hh:mm a"
+          )}
         />
       );
     });

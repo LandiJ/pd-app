@@ -14,6 +14,7 @@ import AnnouncementDetail from "./src/components/AnnouncementDetail";
 import AnnouncementList from "./src/components/AnnouncementList";
 import AddAnnouncements from "./src/components/AddAnnouncements";
 import AdminLogin from "./src/components/AdminLogin";
+import AdminHome from "./src/components/AdminHome";
 
 export default class App extends React.Component {
   render() {
@@ -48,6 +49,12 @@ export default class App extends React.Component {
       },
       AdminLogin: {
         screen: AdminLogin,
+        navigationOptions: {
+          title: "Admin Login"
+        }
+      },
+      AdminHome: {
+        screen: AdminHome,
         navigationOptions: { header: null }
       },
       Upcoming: {

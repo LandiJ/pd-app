@@ -1,65 +1,124 @@
-import React, { Component } from "react";
-import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import React, { Component, AppRegistry } from "react";
 
-import styles from "./styles";
+import { Alert } from "react-native";
+import {
+  Container,
+  Header,
+  Content,
+  Form,
+  Item,
+  Input,
+  Label,
+  Button,
+  Text
+} from "native-base";
 
 class AdminLogin extends Component {
-  constructor() {
-    super();
-    this.state = { username: null, password: null };
+  constructor(props) {
+    super(props);
+
+    this.handleUsernameInput = this.handleUsernameInput.bind(this);
+    this.handlePasswordInput = this.handlePasswordInput.bind(this);
+    this.handleAdminPress = this.handleAdminPress.bind(this);
+
+    this.state = {
+      username: "",
+      password: ""
+    };
+  }
+  handleUsernameInput(e) {
+    var title = this.state.title;
+    title = e.target.value;
+    this.setState({ title });
+  }
+  handlePasswordInput(e) {
+    var body = this.state.body;
+    body = e.target.value;
+    this.setState({ body });
+  }
+  handleAdminPress(e) {
+    const { navigate } = this.props.navigation;
+    navigate("AdminHome");
   }
 
-  userSignup() {
-    Actions.HomePage();
-  }
+  addToList = e => {
+    this.setState({
+      username: this.state.title,
+      password: this.state.body
+    });
 
-  userLogin() {
-    Actions.HomePage();
-  }
+    fetch("https://produffersdatabase.herokuapp.com/announcements", {
+      method: "POST",
+      body: JSON.stringify({
+        title: this.state.title,
+        body: this.state.body
+      }),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => {
+        console.log(response, "yay");
+      })
+      .catch(err => {
+        console.log(err, "boo!");
+      });
+    this.setState({
+      title: "",
+      body: ""
+    });
+    this.handleHomePress();
+    Alert.alert("Success!", "Announcement Added");
+  };
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}> Welcome </Text>
+      <Container>
 
-        <View style={styles.form}>
-          <TextInput
-            editable={true}
-            onChangeText={username => this.setState({ username })}
-            placeholder="Username"
-            ref="username"
-            returnKeyType="next"
-            style={styles.inputText}
-            value={this.state.username}
-          />
+        <Content>
 
-          <TextInput
-            editable={true}
-            onChangeText={password => this.setState({ password })}
-            placeholder="Password"
-            ref="password"
-            returnKeyType="next"
-            secureTextEntry={true}
-            style={styles.inputText}
-            value={this.state.password}
-          />
-
-          <TouchableOpacity
-            style={styles.buttonWrapper}
-            onPress={this.userLogin.bind(this)}
+          <Form>
+            <Item floatingLabel>
+              <Label>Username</Label>
+              <Input
+                onChangeText={username => {
+                  this.setState({ username });
+                }}
+                value={this.state.username}
+              />
+            </Item>
+            <Item floatingLabel last>
+              <Label>Password</Label>
+              <Input
+                onChangeText={password => {
+                  this.setState({ password });
+                }}
+                value={this.state.password}
+              />
+            </Item>
+          </Form>
+          <Button
+            full
+            style={{ backgroundColor: "black", margin: 20 }}
+            onPress={this.handleAdminPress}
           >
-            <Text style={styles.buttonText}> Log In </Text>
-          </TouchableOpacity>
+            <Text
+              style={{
+                color: "burlywood",
+                fontWeight: "bold",
+                fontFamily: "Baskerville",
+                fontSize: 20
+              }}
+            >
+              {" "}Login{" "}
+            </Text>
+          </Button>
+        </Content>
 
-          <TouchableOpacity
-            style={styles.buttonWrapper}
-            onPress={this.userSignup.bind(this)}
-          >
-            <Text style={styles.buttonText}> Sign Up </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+      </Container>
     );
   }
 }
+
 export default AdminLogin;

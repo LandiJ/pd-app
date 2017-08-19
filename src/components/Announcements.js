@@ -8,11 +8,10 @@ import {
   View,
   Keyboard,
   TouchableWithoutFeedback,
-  Button,
   Alert,
   ScrollView
 } from "react-native";
-import { Content, Thumbnail, Body, Spinner } from "native-base";
+import { Content, Thumbnail, Body, Spinner, Button } from "native-base";
 
 class Announcements extends Component {
   constructor(props) {
@@ -47,12 +46,64 @@ class Announcements extends Component {
 
   render() {
     if (this.state.announcements.length === 0) {
-      return <Spinner />;
+      return (
+        <View>
+          <Spinner
+            color="black"
+            style={{
+              marginTop: 300
+            }}
+          />
+          <Text
+            style={{
+              textAlign: "center",
+              fontWeight: "bold",
+              fontFamily: "Baskerville",
+              fontSize: 15
+            }}
+          >
+            Announements are Loading
+          </Text>
+        </View>
+      );
     }
     return (
       <ScrollView>
-        <Button title="Refresh" onPress={this.updateList} />
-
+        <Button
+          full
+          style={{
+            backgroundColor: "black",
+            marginBottom: 5,
+            marginTop: 20
+          }}
+        >
+          <Text
+            style={{
+              color: "burlywood",
+              fontWeight: "bold",
+              fontFamily: "Baskerville",
+              fontSize: 20
+            }}
+          >
+            {" "}Back To Home{" "}
+          </Text>
+        </Button>
+        <Button
+          full
+          style={{ backgroundColor: "black" }}
+          onPress={this.updateList}
+        >
+          <Text
+            style={{
+              color: "burlywood",
+              fontWeight: "bold",
+              fontFamily: "Baskerville",
+              fontSize: 20
+            }}
+          >
+            {" "}Refresh{" "}
+          </Text>
+        </Button>
         <AnnouncementList
           announcements={this.state.announcements}
           navigation={this.props.navigation}
