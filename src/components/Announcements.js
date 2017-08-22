@@ -9,7 +9,8 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   Alert,
-  ScrollView
+  ScrollView,
+  RefreshControl
 } from "react-native";
 import { Content, Thumbnail, Body, Spinner, Button } from "native-base";
 
@@ -17,19 +18,30 @@ class Announcements extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      announcements: []
+      announcements: [],
+      refreshing: false
     };
   }
 
   updateList = e => {
     e.preventDefault();
+    // axios
+    //   .get("https://produffersdatabase.herokuapp.com/announcements")
+    //   .then(response => {
+    //     let announcements = response.data;
+    //     this.setState({ announcements });
+    //   });
+  };
+
+  _onRefresh() {
+    this.setState({ refreshing: true });
     axios
       .get("https://produffersdatabase.herokuapp.com/announcements")
       .then(response => {
         let announcements = response.data;
-        this.setState({ announcements });
+        this.setState({ announcements: announcements, refreshing: false });
       });
-  };
+  }
 
   componentWillMount() {
     this.getAnnouncements();
@@ -68,42 +80,14 @@ class Announcements extends Component {
       );
     }
     return (
-      <ScrollView>
-        <Button
-          full
-          style={{
-            backgroundColor: "black",
-            marginBottom: 5,
-            marginTop: 20
-          }}
-        >
-          <Text
-            style={{
-              color: "burlywood",
-              fontWeight: "bold",
-              fontFamily: "Baskerville",
-              fontSize: 20
-            }}
-          >
-            {" "}Back To Home{" "}
-          </Text>
-        </Button>
-        <Button
-          full
-          style={{ backgroundColor: "black" }}
-          onPress={this.updateList}
-        >
-          <Text
-            style={{
-              color: "burlywood",
-              fontWeight: "bold",
-              fontFamily: "Baskerville",
-              fontSize: 20
-            }}
-          >
-            {" "}Refresh{" "}
-          </Text>
-        </Button>
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._onRefresh.bind(this)}
+          />
+        }
+      >
         <AnnouncementList
           announcements={this.state.announcements}
           navigation={this.props.navigation}

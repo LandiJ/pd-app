@@ -85,12 +85,15 @@ class AddAnnouncements extends Component {
                   this.setState({ title });
                 }}
                 value={this.state.title}
+                style={{ height: 100 }}
               />
             </Item>
             <Item floatingLabel last>
               <Label>Announcement Text</Label>
               <Input
                 name="body"
+                multiline={true}
+                style={{ height: 202 }}
                 onChangeText={body => {
                   this.setState({ body });
                 }}

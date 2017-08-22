@@ -18,11 +18,16 @@ export default class AdminHome extends Component {
     this.state = {};
 
     this.onAddAnnouncementPress = this.onAddAnnouncementPress.bind(this);
+    this.onHomePress = this.onHomePress.bind(this);
   }
 
   onAddAnnouncementPress() {
     const { navigate } = this.props.navigation;
     navigate("AddAnnouncements");
+  }
+  onHomePress() {
+    const { navigate } = this.props.navigation;
+    navigate("Home");
   }
   render() {
     return (
@@ -76,6 +81,22 @@ export default class AdminHome extends Component {
             }}
           >
             {" "}Add Upcoming Event{" "}
+          </Text>
+        </Button>
+        <Button
+          full
+          style={{ backgroundColor: "black", margin: 20 }}
+          onPress={this.onHomePress}
+        >
+          <Text
+            style={{
+              color: "burlywood",
+              fontWeight: "bold",
+              fontFamily: "Baskerville",
+              fontSize: 20
+            }}
+          >
+            {" "}Back Home{" "}
           </Text>
         </Button>
 

@@ -9,7 +9,7 @@ import {
   Image,
   StyleSheet
 } from "react-native";
-import { Button, Content, Text, Thumbnail, Body } from "native-base";
+import { Button, Content, Text, Thumbnail, Body, Container } from "native-base";
 import { SideMenu, List, ListItem } from "react-native-elements";
 
 import Contacts from "./Contacts";
@@ -36,7 +36,7 @@ class Contact extends Component {
         />
       );
     });
-    return <List>{contact}</List>;
+    return <Container><Content><List>{contact}</List></Content></Container>;
   }
 }
 

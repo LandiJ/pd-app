@@ -35,17 +35,23 @@ export default class App extends React.Component {
       },
       Announcements: {
         screen: Announcements,
-        navigationOptions: { header: null }
+        navigationOptions: {
+          title: "Announcements"
+        }
       },
       AnnouncementDetail: {
         screen: AnnouncementDetail,
 
-        navigationOptions: { header: null }
+        navigationOptions: ({ navigation }) => ({
+          title: `${navigation.state.params.title}`
+        })
       },
       AddAnnouncements: {
         screen: AddAnnouncements,
 
-        navigationOptions: { header: null }
+        navigationOptions: {
+          title: "Add Announcements"
+        }
       },
       AdminLogin: {
         screen: AdminLogin,
@@ -67,7 +73,9 @@ export default class App extends React.Component {
       },
       Contact: {
         screen: Contact,
-        navigationOptions: { header: null }
+        navigationOptions: {
+          title: "Contact Us"
+        }
       },
       ContactDetail: {
         screen: ContactDetail,
