@@ -4,6 +4,9 @@ const session = require("express-session");
 var pg = require("pg");
 const users = require("./routes/users");
 const announcements = require("./routes/announcements");
+const protectedRoutes = require("./routes/protected-routes");
+const login = require("./routes/login");
+var auth = require("./middleware/auth");
 
 const models = require("./models");
 
@@ -16,10 +19,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(expressValidator());
-app.use("/", express.static(__dirname + "/public"));
+// app.use("/", express.static(__dirname + "/public"));
+app.use("/users", login);
+app.use("/api", auth, protectedRoutes);
 
 users(app);
 announcements(app);
+// protectedRoutes(app);
+// login(app);
 
 function checkAuth(req, res, next) {
   if (!req.session.userMaybe) {

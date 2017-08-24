@@ -13,7 +13,16 @@ import {
   Text
 } from "native-base";
 
+import { AsyncStorage } from "react-native";
+
 class AdminLogin extends Component {
+  async saveItem(item, selectedValue) {
+    try {
+      await AsyncStorage.setItem(item, selectedValue);
+    } catch (error) {
+      console.error("AsyncStorage error: " + error.message);
+    }
+  }
   constructor(props) {
     super(props);
 
@@ -29,48 +38,71 @@ class AdminLogin extends Component {
   handleUsernameInput(e) {
     var title = this.state.title;
     title = e.target.value;
-    this.setState({ title });
+    this.setState({ username });
   }
   handlePasswordInput(e) {
     var body = this.state.body;
     body = e.target.value;
-    this.setState({ body });
+    this.setState({ password });
   }
   handleAdminPress(e) {
-    const { navigate } = this.props.navigation;
-    navigate("AdminHome");
-  }
-
-  addToList = e => {
-    this.setState({
-      username: this.state.title,
-      password: this.state.body
-    });
-
-    fetch("https://produffersdatabase.herokuapp.com/announcements", {
+    fetch("https://produffersdatabase.herokuapp.com/users/login", {
       method: "POST",
       body: JSON.stringify({
-        title: this.state.title,
-        body: this.state.body
+        username: this.state.username,
+        password: this.state.password
       }),
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
       }
     })
+      .then(response => response.json())
       .then(response => {
-        console.log(response, "yay");
+        this.saveItem("token", response.token), Alert.alert("Login Success!");
+        const { navigate } = this.props.navigation;
+        navigate("AdminHome");
       })
       .catch(err => {
         console.log(err, "boo!");
+        Alert.alert("Invalid Credentials", "Please try again");
       });
     this.setState({
-      title: "",
-      body: ""
+      username: "",
+      password: ""
     });
-    this.handleHomePress();
-    Alert.alert("Success!", "Announcement Added");
-  };
+
+    addToList = e => {
+      this.setState({
+        username: this.state.title,
+        password: this.state.body
+      });
+
+      fetch("https://produffersdatabase.herokuapp.com/announcements", {
+        method: "POST",
+        body: JSON.stringify({
+          title: this.state.title,
+          body: this.state.body
+        }),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        }
+      })
+        .then(response => {
+          console.log(response, "yay");
+        })
+        .catch(err => {
+          console.log(err, "boo!");
+        });
+      this.setState({
+        title: "",
+        body: ""
+      });
+      this.handleHomePress();
+      Alert.alert("Success!", "Announcement Added");
+    };
+  }
 
   render() {
     return (

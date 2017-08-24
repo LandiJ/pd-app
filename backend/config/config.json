@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "ijxsosnbahuhxt",
-    "password": "942936a71acad4db3e621c4f016a9eb68669613579d936e5233dc769ed4184f7",
-    "database": "dbb2l0vbrl0top",
-    "host": "ec2-23-21-85-76.compute-1.amazonaws.com",
+    "username": "landi",
+    "password": null,
+    "database": "pddatabase",
+    "host": "localhost",
     "dialect": "postgres"
   },
   "test": {
