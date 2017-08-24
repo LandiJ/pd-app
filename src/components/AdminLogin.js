@@ -1,6 +1,6 @@
 import React, { Component, AppRegistry } from "react";
 
-import { Alert } from "react-native";
+import { Alert, TouchableOpacity, View } from "react-native";
 import {
   Container,
   Header,
@@ -10,7 +10,8 @@ import {
   Input,
   Label,
   Button,
-  Text
+  Text,
+  Spinner
 } from "native-base";
 
 import { AsyncStorage } from "react-native";
@@ -46,6 +47,8 @@ class AdminLogin extends Component {
     this.setState({ password });
   }
   handleAdminPress(e) {
+    this.setState({ showLoading: true });
+
     fetch("https://produffersdatabase.herokuapp.com/users/login", {
       method: "POST",
       body: JSON.stringify({
@@ -59,6 +62,7 @@ class AdminLogin extends Component {
     })
       .then(response => response.json())
       .then(response => {
+        this.setState({ showLoading: false });
         this.saveItem("token", response.token), Alert.alert("Login Success!");
         const { navigate } = this.props.navigation;
         navigate("AdminHome");
@@ -66,45 +70,38 @@ class AdminLogin extends Component {
       .catch(err => {
         console.log(err, "boo!");
         Alert.alert("Invalid Credentials", "Please try again");
+        const { navigate } = this.props.navigation;
+        navigate("AdminLogin");
       });
     this.setState({
       username: "",
       password: ""
     });
-
-    addToList = e => {
-      this.setState({
-        username: this.state.title,
-        password: this.state.body
-      });
-
-      fetch("https://produffersdatabase.herokuapp.com/announcements", {
-        method: "POST",
-        body: JSON.stringify({
-          title: this.state.title,
-          body: this.state.body
-        }),
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        }
-      })
-        .then(response => {
-          console.log(response, "yay");
-        })
-        .catch(err => {
-          console.log(err, "boo!");
-        });
-      this.setState({
-        title: "",
-        body: ""
-      });
-      this.handleHomePress();
-      Alert.alert("Success!", "Announcement Added");
-    };
   }
 
   render() {
+    if (this.state.showLoading === true) {
+      return (
+        <View>
+          <Spinner
+            color="black"
+            style={{
+              marginTop: 300
+            }}
+          />
+          <Text
+            style={{
+              textAlign: "center",
+              fontWeight: "bold",
+              fontFamily: "Baskerville",
+              fontSize: 15
+            }}
+          >
+            Validating Credentials
+          </Text>
+        </View>
+      );
+    }
     return (
       <Container>
 
@@ -130,22 +127,24 @@ class AdminLogin extends Component {
               />
             </Item>
           </Form>
-          <Button
-            full
-            style={{ backgroundColor: "black", margin: 20 }}
-            onPress={this.handleAdminPress}
-          >
-            <Text
-              style={{
-                color: "burlywood",
-                fontWeight: "bold",
-                fontFamily: "Baskerville",
-                fontSize: 20
-              }}
+          <TouchableOpacity>
+            <Button
+              full
+              style={{ backgroundColor: "black", margin: 20 }}
+              onPress={this.handleAdminPress}
             >
-              {" "}Login{" "}
-            </Text>
-          </Button>
+              <Text
+                style={{
+                  color: "burlywood",
+                  fontWeight: "bold",
+                  fontFamily: "Baskerville",
+                  fontSize: 20
+                }}
+              >
+                {" "}Login{" "}
+              </Text>
+            </Button>
+          </TouchableOpacity>
         </Content>
 
       </Container>
