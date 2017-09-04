@@ -70,22 +70,6 @@ export default class AdminHome extends Component {
         <Button
           full
           style={{ backgroundColor: "black", margin: 20 }}
-          onPress={this.onAddAnnouncementPress}
-        >
-          <Text
-            style={{
-              color: "burlywood",
-              fontWeight: "bold",
-              fontFamily: "Baskerville",
-              fontSize: 20
-            }}
-          >
-            {" "}Add Upcoming Event{" "}
-          </Text>
-        </Button>
-        <Button
-          full
-          style={{ backgroundColor: "black", margin: 20 }}
           onPress={this.onHomePress}
         >
           <Text

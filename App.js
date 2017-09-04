@@ -15,6 +15,7 @@ import AnnouncementList from "./src/components/AnnouncementList";
 import AddAnnouncements from "./src/components/AddAnnouncements";
 import AdminLogin from "./src/components/AdminLogin";
 import AdminHome from "./src/components/AdminHome";
+import Scores from "./src/components/Scores";
 
 export default class App extends React.Component {
   render() {
@@ -71,6 +72,12 @@ export default class App extends React.Component {
         screen: Schedule,
         navigationOptions: {
           title: "Schedule"
+        }
+      },
+      Scores: {
+        screen: Scores,
+        navigationOptions: {
+          title: "Scores"
         }
       },
       Contact: {

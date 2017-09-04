@@ -23,6 +23,7 @@ export default class Home extends Component {
     this.onSchedulePress = this.onSchedulePress.bind(this);
     this.onContactPress = this.onContactPress.bind(this);
     this.onAddPress = this.onAddPress.bind(this);
+    this.onScoresPress = this.onScoresPress.bind(this);
   }
   onAboutPress() {
     const { navigate } = this.props.navigation;
@@ -48,6 +49,10 @@ export default class Home extends Component {
     const { navigate } = this.props.navigation;
     navigate("AdminLogin");
   }
+  onScoresPress() {
+    const { navigate } = this.props.navigation;
+    navigate("Scores");
+  }
   render() {
     return (
       <Image
@@ -59,7 +64,8 @@ export default class Home extends Component {
           style={{
             fontSize: 60,
             position: "relative",
-            bottom: 60,
+            top: 0,
+            marginBottom: 60,
             fontFamily: "Baskerville-SemiBoldItalic",
             color: "burlywood",
             textShadowColor: "black",
@@ -70,7 +76,7 @@ export default class Home extends Component {
           Pro-Duffers USA Inc.
         </Text>
 
-        <Button
+        {/*<Button
           full
           style={{ backgroundColor: "black", margin: 20 }}
           onPress={this.onAboutPress}
@@ -85,10 +91,10 @@ export default class Home extends Component {
           >
             {" "}About Us{" "}
           </Text>
-        </Button>
+        </Button>*/}
         <Button
           full
-          style={{ backgroundColor: "black", margin: 20 }}
+          style={{ backgroundColor: "black", margin: 7 }}
           onPress={this.onAnnouncePress}
         >
           <Text
@@ -104,23 +110,7 @@ export default class Home extends Component {
         </Button>
         <Button
           full
-          style={{ backgroundColor: "black", margin: 15 }}
-          onPress={this.onUpcomingPress}
-        >
-          <Text
-            style={{
-              color: "burlywood",
-              fontWeight: "bold",
-              fontFamily: "Baskerville",
-              fontSize: 20
-            }}
-          >
-            {" "}Upcoming Events{" "}
-          </Text>
-        </Button>
-        <Button
-          full
-          style={{ backgroundColor: "black", margin: 15 }}
+          style={{ backgroundColor: "black", margin: 7 }}
           onPress={this.onSchedulePress}
         >
           <Text
@@ -136,7 +126,7 @@ export default class Home extends Component {
         </Button>
         <Button
           full
-          style={{ backgroundColor: "black", margin: 15 }}
+          style={{ backgroundColor: "black", margin: 7 }}
           onPress={this.onContactPress}
         >
           <Text
@@ -152,7 +142,39 @@ export default class Home extends Component {
         </Button>
         <Button
           full
-          style={{ backgroundColor: "black", margin: 15 }}
+          style={{ backgroundColor: "black", margin: 7 }}
+          onPress={this.onScoresPress}
+        >
+          <Text
+            style={{
+              color: "burlywood",
+              fontWeight: "bold",
+              fontFamily: "Baskerville",
+              fontSize: 20
+            }}
+          >
+            {" "}Scores{" "}
+          </Text>
+        </Button>
+        <Button
+          full
+          style={{ backgroundColor: "black", margin: 7 }}
+          onPress={this.onUpcomingPress}
+        >
+          <Text
+            style={{
+              color: "burlywood",
+              fontWeight: "bold",
+              fontFamily: "Baskerville",
+              fontSize: 20
+            }}
+          >
+            {" "}Souvenir Booklet{" "}
+          </Text>
+        </Button>
+        <Button
+          full
+          style={{ backgroundColor: "black", margin: 7 }}
           onPress={this.onAddPress}
         >
           <Text
@@ -177,6 +199,7 @@ const styles = StyleSheet.create({
     height: undefined,
     backgroundColor: "transparent",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    resizeMode: "stretch"
   }
 });
