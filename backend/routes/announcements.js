@@ -17,9 +17,9 @@ function announcements(app) {
     });
   });
 
-  app.post("/delete-announcement/:id", (req, res) => {
+  app.post("/delete-announcements", (req, res) => {
     models.announcement
-      .destroy({ where: { id: req.params.id } })
+      .destroy({ where: {} })
       .then(() => {
         res.send("deleted user");
       })

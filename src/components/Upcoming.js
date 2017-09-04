@@ -7,17 +7,39 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   Button,
-  Alert
+  Alert,
+  Image,
+  Container,
+  StyleSheet,
+  ScrollView
 } from "react-native";
 
-class Upcoming extends Component {
+export default class Upcoming extends Component {
   render() {
     return (
-      <View>
-        <Text>This is the Upcoming Events Page</Text>
-      </View>
+      <ScrollView minimumZoomScale={0.95} maximumZoomScale={2}>
+
+        <Image
+          source={require("./iten-page-006.jpg")}
+          style={{
+            resizeMode: "contain",
+            aspectRatio: 0.5,
+            width: 130 + "%",
+            height: 80 + "%"
+          }}
+        />
+
+      </ScrollView>
     );
   }
 }
-
-export default Upcoming;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: undefined,
+    height: undefined,
+    backgroundColor: "transparent",
+    justifyContent: "center",
+    alignItems: "center"
+  }
+});

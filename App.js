@@ -69,7 +69,9 @@ export default class App extends React.Component {
       },
       Schedule: {
         screen: Schedule,
-        navigationOptions: { header: null }
+        navigationOptions: {
+          title: "Schedule"
+        }
       },
       Contact: {
         screen: Contact,
