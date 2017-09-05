@@ -11,35 +11,44 @@ import {
   Image,
   Container,
   StyleSheet,
-  ScrollView
+  ScrollView,
+  WebView
 } from "react-native";
 
+import { Spinner } from "native-base";
+
 export default class Upcoming extends Component {
+  constructor() {
+    super();
+    this.state = {
+      layoutChanged: false
+    };
+  }
+
+  renderPDF = () => (
+    <WebView
+      source={{
+        uri: "http://www.produffersusa.org/2017%20National/SA%202017%20National%20-%20Copy.pdf"
+      }}
+    />
+  );
+
   render() {
     return (
-      <ScrollView minimumZoomScale={0.95} maximumZoomScale={2}>
+      <View
+        style={styles.container}
+        onLayout={() => this.setState({ layoutChanged: true })}
+      >
 
-        <Image
-          source={require("./iten-page-006.jpg")}
-          style={{
-            resizeMode: "contain",
-            aspectRatio: 0.5,
-            width: 130 + "%",
-            height: 80 + "%"
-          }}
-        />
+        {this.state.layoutChanged ? this.renderPDF() : <View />}
 
-      </ScrollView>
+      </View>
     );
   }
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: undefined,
-    height: undefined,
-    backgroundColor: "transparent",
-    justifyContent: "center",
-    alignItems: "center"
+    flexDirection: "column"
   }
 });

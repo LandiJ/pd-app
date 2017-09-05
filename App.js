@@ -66,7 +66,9 @@ export default class App extends React.Component {
       },
       Upcoming: {
         screen: Upcoming,
-        navigationOptions: { header: null }
+        navigationOptions: {
+          title: "Booklet"
+        }
       },
       Schedule: {
         screen: Schedule,

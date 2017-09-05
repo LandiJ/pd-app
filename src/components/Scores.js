@@ -1,9 +1,14 @@
 import React, { Component } from "react";
-import { Text } from "react-native";
+import { Text, WebView } from "react-native";
 
 class Scores extends Component {
   render() {
-    return <Text>Scores</Text>;
+    return (
+      <WebView
+        source={{ uri: "https://github.com/facebook/react-native" }}
+        style={{ marginTop: 20 }}
+      />
+    );
   }
 }
 
